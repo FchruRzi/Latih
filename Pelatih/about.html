@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pelatihan dan Sertifikat - Polnes</title>
+    <link rel="icon" href="Images/Logo_Polnes.png" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+      }
+      
+      body {
+        background-color: #f8f8f8;
+      }
+      
+      .sub-header {
+        height: 50vh;
+        width: 100%;
+        background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),
+          url("/api/placeholder/1200/600");
+        background-position: center;
+        background-size: cover;
+        text-align: center;
+        color: #fff;
+        position: relative;
+      }
+      
+      nav {
+        display: flex;
+        padding: 2% 6%;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      nav img {
+        width: 150px;
+      }
+      
+      .nav-links {
+        flex: 1;
+        text-align: right;
+      }
+      
+      .nav-links ul li {
+        list-style: none;
+        display: inline-block;
+        padding: 8px 12px;
+        position: relative;
+      }
+      
+      .nav-links ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+      }
+      
+      .nav-links ul li::after {
+        content: "";
+        width: 0%;
+        height: 2px;
+        background: #f44336;
+        display: block;
+        margin: auto;
+        transition: 0.5s;
+      }
+      
+      .nav-links ul li:hover::after {
+        width: 100%;
+      }
+      
+      .sub-header h1 {
+        margin-top: 100px;
+        font-size: 36px;
+        font-weight: 600;
+      }
+      
+      .container {
+        width: 80%;
+        margin: auto;
+        padding: 60px 0;
+      }
+      
+      .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+      
+      .section-header h2 {
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+      
+      .section-header p {
+        color: #666;
+        line-height: 1.6;
+        font-size: 16px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .training-overview {
+        background: #fff;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin-bottom: 50px;
+      }
+      
+      .overview-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: center;
+      }
+      
+      .overview-text h3 {
+        font-size: 28px;
+        color: #f44336;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+      
+      .overview-text p {
+        color: #666;
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+      
+      .overview-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 30px;
+      }
+      
+      .stat-item {
+        text-align: center;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        border-left: 4px solid #f44336;
+      }
+      
+      .stat-number {
+        font-size: 32px;
+        font-weight: bold;
+        color: #f44336;
+        display: block;
+      }
+      
+      .stat-label {
+        color: #666;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+      
+      .overview-image {
+        text-align: center;
+      }
+      
+      .overview-image img {
+        width: 100%;
+        max-width: 500px;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      .programs-section {
+        margin: 80px 0;
+      }
+      
+      .programs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+      
+      .program-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .program-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #f44336, #ff7043);
+      }
+      
+      .program-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+      
+      .program-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #f44336, #ff7043);
+        border-radius: 50%;
+        margin-bottom: 20px;
+      }
+      
+      .program-icon i {
+        font-size: 24px;
+        color: #fff;
+      }
+      
+      .program-card h3 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+      
+      .program-card p {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      
+      .program-features {
+        margin: 20px 0;
+      }
+      
+      .program-features h4 {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+      
+      .program-features ul {
+        list-style: none;
+        padding: 0;
+      }
+      
+      .program-features li {
+        color: #666;
+        margin-bottom: 8px;
+        padding-left: 20px;
+        position: relative;
+      }
+      
+      .program-features li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #f44336;
+        font-weight: bold;
+      }
+      
+      .program-card .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background: linear-gradient(135deg, #f44336, #ff7043);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+      
+      .program-card .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(244, 67, 54, 0.4);
+      }
+      
+      .certificates-section {
+        background: #fff;
+        padding: 60px 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin: 50px 0;
+      }
+      
+      .certificates-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+      
+      .certificate-item {
+        text-align: center;
+        padding: 30px 20px;
+        border: 2px solid #f0f0f0;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+      
+      .certificate-item:hover {
+        border-color: #f44336;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      .certificate-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        background: linear-gradient(135deg, #f44336, #ff7043);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .certificate-icon i {
+        font-size: 32px;
+        color: #fff;
+      }
+      
+      .certificate-item h4 {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+      
+      .certificate-item p {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      
+      .certificate-benefits {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+      }
+      
+      .certificate-benefits h5 {
+        color: #333;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+      
+      .certificate-benefits ul {
+        list-style: none;
+        padding: 0;
+      }
+      
+      .certificate-benefits li {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 5px;
+        padding-left: 15px;
+        position: relative;
+      }
+      
+      .certificate-benefits li::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: #f44336;
+      }
+      
+      .requirements-section {
+        margin: 80px 0;
+      }
+      
+      .requirements-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      
+      .requirements-box {
+        background: #fff;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+      
+      .requirements-box h3 {
+        font-size: 24px;
+        color: #f44336;
+        margin-bottom: 20px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+      }
+      
+      .requirements-box h3 i {
+        margin-right: 10px;
+        font-size: 20px;
+      }
+      
+      .requirements-list {
+        list-style: none;
+        padding: 0;
+      }
+      
+      .requirements-list li {
+        color: #666;
+        margin-bottom: 15px;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid #f44336;
+      }
+      
+      .requirements-list li strong {
+        color: #333;
+        display: block;
+        margin-bottom: 5px;
+      }
+      
+      .cta-section {
+        background: linear-gradient(135deg, #f44336, #ff7043);
+        color: #fff;
+        padding: 60px 40px;
+        border-radius: 15px;
+        text-align: center;
+        margin: 50px 0;
+      }
+      
+      .cta-section h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+      
+      .cta-section p {
+        font-size: 18px;
+        margin-bottom: 30px;
+        opacity: 0.9;
+      }
+      
+      .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      
+      .cta-btn {
+        display: inline-block;
+        padding: 15px 40px;
+        background: #fff;
+        color: #f44336;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      
+      .cta-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+      }
+      
+      .cta-btn.secondary {
+        background: transparent;
+        color: #fff;
+        border: 2px solid #fff;
+      }
+      
+      .cta-btn.secondary:hover {
+        background: #fff;
+        color: #f44336;
+      }
+      
+      .footer {
+        width: 100%;
+        text-align: center;
+        padding: 30px 0;
+        background: #333;
+        color: #fff;
+        margin-top: 50px;
+      }
+      
+      .footer h1 {
+        margin-bottom: 25px;
+        margin-top: 20px;
+        font-weight: 600;
+      }
+      
+      .footer-intro {
+        width: 80%;
+        margin: auto;
+        margin-bottom: 25px;
+      }
+      
+      .icons .fa {
+        color: #f44336;
+        margin: 0 13px;
+        cursor: pointer;
+        padding: 18px 0;
+        text-decoration: none;
+        font-size: 18px;
+      }
+      
+      @media (max-width: 768px) {
+        .container {
+          width: 90%;
+        }
+        
+        .overview-content {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        
+        .programs-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .requirements-content {
+          grid-template-columns: 1fr;
+        }
+        
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .overview-stats {
+          grid-template-columns: 1fr;
+        }
+        
+        .sub-header h1 {
+          font-size: 28px;
+        }
+        
+        .section-header h2 {
+          font-size: 28px;
+        }
+      }
+    </style>
+  </head>
+  
+  <body>
+    <section class="sub-header">
+      <nav>
+        <a href="index.html"><img src="/api/placeholder/150/50" alt="Logo Polnes" /></a>
+        <div class="nav-links" id="navLinks">
+          <ul>
+            <li><a href="index.html">BERANDA</a></li>
+            <li><a href="about.html">TENTANG</a></li>
+            <li><a href="courses.html">JADWAL</a></li>
+            <li><a href="blog.html">FORUM</a></li>
+            <li><a href="contact.html">SERTIFIKAT</a></li>
+          </ul>
+        </div>
+      </nav>
+      <h1>Program Pelatihan & Sertifikasi</h1>
+    </section>
+
+    <div class="container">
+      <div class="section-header">
+        <h2>Tingkatkan Kompetensi dengan Program Pelatihan Terbaik</h2>
+        <p>Politeknik Negeri Samarinda menyediakan berbagai program pelatihan dan sertifikasi profesional untuk mempersiapkan mahasiswa menghadapi tantangan dunia kerja modern. Dengan instruktur berpengalaman dan fasilitas terdepan, kami berkomitmen mengembangkan talenta unggul.</p>
+      </div>
+
+      <div class="training-overview">
+        <div class="overview-content">
+          <div class="overview-text">
+            <h3>Mengapa Memilih Program Pelatihan Kami?</h3>
+            <p>Program pelatihan di Politeknik Negeri Samarinda dirancang khusus untuk memenuhi kebutuhan industri terkini. Kami menggabungkan teori dan praktik dengan pendekatan pembelajaran yang inovatif dan relevan.</p>
+            <p>Setiap program dilengkapi dengan sertifikat resmi yang diakui industri, memberikan nilai tambah bagi karir Anda di masa depan.</p>
+            
+            <div class="overview-stats">
+              <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Program Pelatihan</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">95%</span>
+                <span class="stat-label">Tingkat Kepuasan</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">2000+</span>
+                <span class="stat-label">Alumni Tersertifikasi</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">15+</span>
+                <span class="stat-label">Mitra Industri</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="overview-image">
+            <img src="/api/placeholder/500/400" alt="Pelatihan di Polnes" />
+          </div>
+        </div>
+      </div>
+
+      <div class="programs-section">
+        <div class="section-header">
+          <h2>Program Pelatihan Unggulan</h2>
+          <p>Pilih program pelatihan yang sesuai dengan minat dan kebutuhan karir Anda</p>
+        </div>
+        
+        <div class="programs-grid">
+          <div class="program-card">
+            <div class="program-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <h3>Pelatihan Teknis & Programming</h3>
+            <p>Kembangkan keahlian programming dan teknologi terdepan untuk menghadapi era digital.</p>
+            
+            <div class="program-features">
+              <h4>Yang Akan Anda Pelajari:</h4>
+              <ul>
+                <li>Web Development (HTML, CSS, JavaScript, PHP)</li>
+                <li>Mobile App Development (Android/iOS)</li>
+                <li>Database Management (MySQL, PostgreSQL)</li>
+                <li>Cloud Computing (AWS, Azure)</li>
+                <li>Network Security & Cybersecurity</li>
+                <li>DevOps & System Administration</li>
+              </ul>
+            </div>
+            
+            <a href="#" class="btn">Pelajari Lebih Lanjut</a>
+          </div>
+
+          <div class="program-card">
+            <div class="program-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h3>Pelatihan Soft Skills</h3>
+            <p>Asah kemampuan interpersonal dan leadership untuk kesuksesan karir jangka panjang.</p>
+            
+            <div class="program-features">
+              <h4>Modul Pelatihan:</h4>
+              <ul>
+                <li>Public Speaking & Presentation Skills</li>
+                <li>Leadership & Team Management</li>
+                <li>Communication & Interpersonal Skills</li>
+                <li>Time Management & Productivity</li>
+                <li>Critical Thinking & Problem Solving</li>
+                <li>Emotional Intelligence</li>
+              </ul>
+            </div>
+            
+            <a href="#" class="btn">Pelajari Lebih Lanjut</a>
+          </div>
+
+          <div class="program-card">
+            <div class="program-icon">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <h3>Sertifikasi Profesional</h3>
+            <p>Dapatkan sertifikat internasional yang diakui industri untuk meningkatkan kredibilitas profesional.</p>
+            
+            <div class="program-features">
+              <h4>Sertifikasi Tersedia:</h4>
+              <ul>
+                <li>Microsoft Azure Fundamentals</li>
+                <li>AWS Cloud Practitioner</li>
+                <li>Google Cloud Associate</li>
+                <li>Cisco CCNA</li>
+                <li>CompTIA Security+</li>
+                <li>Oracle Database Administrator</li>
+              </ul>
+            </div>
+            
+            <a href="#" class="btn">Pelajari Lebih Lanjut</a>
+          </div>
+
+          <div class="program-card">
+            <div class="program-icon">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <h3>Program Magang & Kerja Praktek</h3>
+            <p>Terapkan ilmu yang dipelajari melalui pengalaman langsung di perusahaan mitra.</p>
+            
+            <div class="program-features">
+              <h4>Keunggulan Program:</h4>
+              <ul>
+                <li>Penempatan di perusahaan terkemuka</li>
+                <li>Bimbingan mentor berpengalaman</li>
+                <li>Networking dengan profesional industri</li>
+                <li>Sertifikat pengalaman kerja</li>
+                <li>Peluang rekrutmen langsung</li>
+                <li>Portfolio project nyata</li>
+              </ul>
+            </div>
+            
+            <a href="#" class="btn">Pelajari Lebih Lanjut</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="certificates-section">
+        <div class="section-header">
+          <h2>Jenis Sertifikat yang Akan Anda Dapatkan</h2>
+          <p>Setiap program pelatihan dilengkapi dengan sertifikat resmi yang memiliki kredibilitas tinggi</p>
+        </div>
+        
+        <div class="certificates-grid">
+          <div class="certificate-item">
+            <div class="certificate-icon">
+              <i class="fas fa-university"></i>
+            </div>
+            <h4>Sertifikat Polnes</h4>
+            <p>Sertifikat resmi dari Politeknik Negeri Samarinda yang menunjukkan kelulusan program pelatihan dengan standar akademik tinggi.</p>
+            
+            <div class="certificate-benefits">
+              <h5>Manfaat:</h5>
+              <ul>
+                <li>Pengakuan resmi dari institusi pendidikan</li>
+                <li>Credit point untuk akademik</li>
+                <li>Portofolio profesional</li>
+                <li>Syarat wisuda tambahan</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="certificate-item">
+            <div class="certificate-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <h4>Sertifikat Internasional</h4>
+            <p>Sertifikat dari vendor teknologi terkemuka seperti Microsoft, Google, Amazon, dan Cisco yang diakui secara global.</p>
+            
+            <div class="certificate-benefits">
+              <h5>Manfaat:</h5>
+              <ul>
+                <li>Pengakuan international</li>
+                <li>Peluang karir global</li>
+                <li>Standar industri terkini</li>
+                <li>Validitas jangka panjang</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="certificate-item">
+            <div class="certificate-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h4>Sertifikat Mitra Industri</h4>
+            <p>Sertifikat khusus dari perusahaan mitra yang menunjukkan kompetensi sesuai kebutuhan industri spesifik.</p>
+            
+            <div class="certificate-benefits">
+              <h5>Manfaat:</h5>
+              <ul>
+                <li>Relevansi dengan dunia kerja</li>
+                <li>Networking industri</li>
+                <li>Peluang rekrutmen</li>
+                <li>Skill praktis aplikatif</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="requirements-section">
+        <div class="section-header">
+          <h2>Syarat dan Ketentuan</h2>
+          <p>Informasi lengkap mengenai persyaratan dan prosedur pendaftaran program pelatihan</p>
+        </div>
+        
+        <div class="requirements-content">
+          <div class="requirements-box">
+            <h3><i class="fas fa-user-check"></i> Persyaratan Peserta</h3>
+            <ul class="requirements-list">
+              <li>
+                <strong>Status Mahasiswa Aktif</strong>
+                Mahasiswa aktif Politeknik Negeri Samarinda dengan IPK minimal 2.75
+              </li>
+              <li>
+                <strong>Komitmen Waktu</strong>
+                Sanggup mengikuti seluruh rangkaian pelatihan sesuai jadwal yang ditentukan
+              </li>
+              <li>
+                <strong>Perangkat Pendukung</strong>
+                Memiliki laptop/PC dengan spesifikasi minimum sesuai program yang dipilih
+              </li>
+              <li>
+                <strong>Kemampuan Dasar</strong>
+                Menguasai dasar-dasar komputer dan internet untuk program teknis
+              </li>
+            </ul>
+          </div>
+
+          <div class="requirements-box">
+            <h3><i class="fas fa-file-alt"></i> Dokumen yang Diperlukan</h3>
+            <ul class="requirements-list">
+              <li>
+                <strong>Formulir Pendaftaran</strong>
+                Formulir pendaftaran yang telah diisi lengkap dan ditandatangani
+              </li>
+              <li>
+                <strong>Kartu Tanda Mahasiswa</strong>
+                Fotokopi KTM yang masih berlaku dan telah dilegalisir
+              </li>
+              <li>
+                <strong>Transkrip Nilai</strong>
+                Transkrip nilai terbaru yang menunjukkan IPK minimal 2.75
+              </li>
+              <li>
+                <strong>Surat Rekomendasi</strong>
+                Surat rekomendasi dari pembimbing akademik atau dosen pembimbing
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h2>Siap Mengembangkan Kompetensi Anda?</h2>
+        <p>Bergabunglah dengan ribuan mahasiswa yang telah merasakan manfaat program pelatihan kami. Investasi terbaik untuk masa depan karir Anda dimulai dari sekarang.</p>
+        
+        <div class="cta-buttons">
+          <a href="#" class="cta-btn">Daftar Sekarang</a>
+          <a href="#" class="cta-btn secondary">Konsultasi Gratis</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="footer">
+      <h1>Politeknik Negeri Samarinda</h1>
+      <div class="footer-intro">
+        <p>
+          "Mengembangkan sumber daya manusia yang berkualitas dan kompeten melalui program pelatihan dan sertifikasi terdepan."
+        </p>
+      </div>
+      <div class="icons">
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-twitter"></a>
+        <a href="#" class="fa fa-instagram"></a>
+        <a href="#" class="fa fa-linkedin"></a>
+      </div>
+      <p>© 2025 Politeknik Negeri Samarinda - Program Pelatihan & Sertifikasi</p>
+    </section>
+
+    <script>
+      // Smooth scrolling untuk anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+
+      const animatedElements = document.querySelectorAll('.animated');
+      animatedElements.forEach(element => {
+        observer.observe(element);
+      });
+    </script>
+  </body>
+</html>

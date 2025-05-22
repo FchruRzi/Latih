@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Polnes - Jadwal Pelatihan</title>
+    <link rel="icon" href="Images/Logo_Polnes.png" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500&family=Poppins:wght@100;200;300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200;10..48,300;10..48,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Tabel Jadwal Styles */
+      .schedule {
+        width: 80%;
+        margin: auto;
+        text-align: center;
+        padding-top: 50px;
+        padding-bottom: 50px;
+      }
+      
+      .schedule h1 {
+        font-size: 36px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+      
+      .schedule p {
+        color: #777;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 22px;
+        padding: 10px;
+        margin-bottom: 40px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      /* Filter Container */
+      .filter-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .search-box {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        min-width: 300px;
+        font-size: 14px;
+        font-family: 'Poppins', sans-serif;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      }
+      
+      .category-filter {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        min-width: 200px;
+        font-size: 14px;
+        font-family: 'Poppins', sans-serif;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      }
+      
+      /* Jadwal Table */
+      .jadwal-table-container {
+        overflow-x: auto;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-bottom: 30px;
+      }
+      
+      .jadwal-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+      }
+      
+      .jadwal-table thead {
+        background-color: #f44336;
+        color: white;
+      }
+      
+      .jadwal-table th {
+        padding: 15px 20px;
+        text-align: left;
+        font-weight: 500;
+        font-size: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      .jadwal-table td {
+        padding: 15px 20px;
+        border-bottom: 1px solid #f1f1f1;
+        font-size: 14px;
+        color: #444;
+      }
+      
+      .jadwal-table tbody tr:hover {
+        background-color: #f9f9f9;
+      }
+      
+      .jadwal-table tbody tr:last-child td {
+        border-bottom: none;
+      }
+      
+      /* Button */
+      .btn-daftar {
+        display: inline-block;
+        padding: 8px 20px;
+        background-color: #f44336;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 400;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+      }
+      
+      .btn-daftar:hover {
+        background-color: #e53935;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(244, 67, 54, 0.3);
+      }
+      
+      /* Category Indicators */
+      .category-badge {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        color: white;
+        font-weight: 500;
+        display: inline-block;
+      }
+      
+      .badge-teknik {
+        background-color: #2196F3;
+      }
+      
+      .badge-it {
+        background-color: #4CAF50;
+      }
+      
+      .badge-manajemen {
+        background-color: #FF9800;
+      }
+      
+      .badge-bahasa {
+        background-color: #9C27B0;
+      }
+      
+      /* Responsive Styles */
+      @media screen and (max-width: 768px) {
+        .filter-container {
+          flex-direction: column;
+          gap: 15px;
+        }
+        
+        .search-box, .category-filter {
+          width: 100%;
+          min-width: unset;
+        }
+        
+        .jadwal-table th, .jadwal-table td {
+          padding: 12px 10px;
+          font-size: 13px;
+        }
+        
+        .btn-daftar {
+          padding: 6px 12px;
+          font-size: 12px;
+        }
+      }
+      
+      /* No Data Message */
+      .no-data-message {
+        display: none;
+        padding: 30px;
+        text-align: center;
+        color: #777;
+        font-style: italic;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="sub-header">
+      <nav>
+        <a href="index.html"><img src="Images/Logo_Polnes.png" alt="" /></a>
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-times" onclick="hideMenu()"></i>
+          <ul>
+            <li><a href="index.html">BERANDA</a></li>
+            <li><a href="about.html">TENTANG</a></li>
+            <li><a href="courses.html">JADWAL</a></li>
+            <li><a href="blog.html">FORUM</a></li>
+            <li><a href="contact.html">SERTIFIKAT</a></li>
+          </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+      <h1>JADWAL PELATIHAN</h1>
+    </section>
+
+    <!-- Jadwal Section -->
+    <section class="schedule" id="jadwal-section">
+      <h1>Program Pelatihan Tersedia</h1>
+      <p>
+        Jelajahi program kami yang dirancang untuk memupuk minat Anda pada teknologi dan membekali Anda dengan keterampilan untuk membentuk masa depan. Daftar untuk pelatihan yang sesuai dengan kebutuhan pengembangan profesional Anda.
+      </p>
+      
+      <div class="filter-container">
+        <input type="text" placeholder="Cari pelatihan..." class="search-box" id="searchInput" onkeyup="filterTable()">
+        <select class="category-filter" id="categoryFilter" onchange="filterTable()">
+          <option value="all">Semua Kategori</option>
+          <option value="teknik">Teknik</option>
+          <option value="it">Teknologi Informasi</option>
+          <option value="manajemen">Manajemen</option>
+          <option value="bahasa">Bahasa</option>
+        </select>
+      </div>
+      
+      <div class="jadwal-table-container">
+        <table class="jadwal-table" id="jadwalTable">
+          <thead>
+            <tr>
+              <th>Nama Pelatihan</th>
+              <th>Kategori</th>
+              <th>Tanggal</th>
+              <th>Waktu</th>
+              <th>Lokasi</th>
+              <th>Kuota</th>
+              <th>Pendaftaran</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-category="teknik">
+              <td>Pelatihan AutoCAD Dasar</td>
+              <td><span class="category-badge badge-teknik">Teknik</span></td>
+              <td>10 Juni 2025</td>
+              <td>09:00 - 16:00</td>
+              <td>Lab Komputer Teknik</td>
+              <td>25 Orang</td>
+              <td><a href="#" class="btn-daftar">Daftar</a></td>
+            </tr>
+            <tr data-category="it">
+              <td>Workshop Machine Learning</td>
+              <td><span class="category-badge badge-it">Teknologi Informasi</span></td>
+              <td>15 Juni 2025</td>
+              <td>08:30 - 15:30</td>
+              <td>Ruang Seminar Teknik</td>
+              <td>20 Orang</td>
+              <td><a href="#" class="btn-daftar">Daftar</a></td>
+            </tr>
+            <tr data-category="manajemen">
+              <td>Pelatihan Manajemen Proyek</td>
+              <td><span class="category-badge badge-manajemen">Manajemen</span></td>
+              <td>20 Juni 2025</td>
+              <td>09:00 - 17:00</td>
+              <td>Aula Utama</td>
+              <td>30 Orang</td>
+              <td><a href="#" class="btn-daftar">Daftar</a></td>
+            </tr>
+            <tr data-category="teknik">
+              <td>Pelatihan Solidworks</td>
+              <td><span class="category-badge badge-teknik">Teknik</span></td>
+              <td>25 Juni 2025</td>
+              <td>09:00 - 16:00</td>
+              <td>Lab CAD/CAM</td>
+              <td>20 Orang</td>
+              <td><a href="#" class="btn-daftar">Daftar</a></td>
+            </tr>
+            <tr data-category="it">
+              <td>Pelatihan Web Development</td>
+              <td><span class="category-badge badge-it">Teknologi Informasi</span></td>
+              <td>2 Juli 2025</td>
+              <td>09:00 - 16:00</td>
+              <td>Lab Komputer TI</td>
+              <td>25 Orang</td>
+              <td><a href="#" class="btn-daftar">Daftar</a></td>
+            </tr>
+            <tr data-category="bahasa">
+              <td>Pelatihan Bahasa Inggris Teknik</td>
+              <td><span class="category-badge badge-bahasa">Bahasa</span></td>
+              <td>5 Juli 2025</td>
+              <td>13:00 - 17:00</td>
+              <td>Ruang Bahasa</td>
+              <td>25 Orang</td>
+              <td><a href="#" class="btn-daftar">Daftar</a></td>
+            </tr>
+            <tr data-category="manajemen">
+              <td>Workshop Leadership</td>
+              <td><span class="category-badge badge-manajemen">Manajemen</span></td>
+              <td>10 Juli 2025</td>
+              <td>09:00 - 15:00</td>
+              <td>Aula Utama</td>
+              <td>35 Orang</td>
+              <td><a href="#" class="btn-daftar">Daftar</a></td>
+            </tr>
+            <tr data-category="it">
+              <td>Pelatihan Mobile App Development</td>
+              <td><span class="category-badge badge-it">Teknologi Informasi</span></td>
+              <td>15 Juli 2025</td>
+              <td>09:00 - 16:00</td>
+              <td>Lab Mobile Computing</td>
+              <td>20 Orang</td>
+              <td><a href="#" class="btn-daftar">Daftar</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="no-data-message" id="noDataMessage">
+        Tidak ada pelatihan yang sesuai dengan kriteria pencarian Anda.
+      </div>
+    </section>
+
+    <!-- Call to action -->
+    <section class="cta">
+      <h1>
+        Daftar Untuk Kursus Online Kami <br />
+        dari mana saja di dunia!
+      </h1>
+      <a href="" class="hero-btn">HUBUNGI KAMI</a>
+    </section>
+
+    <!--Javascript untuk Toggle Menu dan Filter Tabel-->
+    <script>
+      var navLinks = document.getElementById("navLinks");
+
+      function showMenu() {
+        navLinks.style.right = "0";
+      }
+
+      function hideMenu() {
+        navLinks.style.right = "-200px";
+      }
+      
+      function filterTable() {
+        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+        const categoryFilter = document.getElementById('categoryFilter').value;
+        const rows = document.querySelectorAll('#jadwalTable tbody tr');
+        const noDataMessage = document.getElementById('noDataMessage');
+        
+        let visibleRows = 0;
+        
+        rows.forEach(row => {
+          const nameCell = row.querySelector('td:first-child').textContent.toLowerCase();
+          const category = row.getAttribute('data-category');
+          
+          const nameMatch = nameCell.includes(searchInput);
+          const categoryMatch = categoryFilter === 'all' || category === categoryFilter;
+          
+          if (nameMatch && categoryMatch) {
+            row.style.display = '';
+            visibleRows++;
+          } else {
+            row.style.display = 'none';
+          }
+        });
+        
+        // Show or hide no data message
+        if (visibleRows === 0) {
+          noDataMessage.style.display = 'block';
+        } else {
+          noDataMessage.style.display = 'none';
+        }
+      }
+    </script>
+  </body>
+</html>

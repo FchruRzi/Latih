@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sertifikat Pelatihan - Polnes</title>
+    <link rel="icon" href="Images/Logo_Polnes.png" type="image/x-icon" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+      }
+      
+      body {
+        background-color: #f8f8f8;
+      }
+      
+      .sub-header {
+        height: 50vh;
+        width: 100%;
+        background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),
+          url("Images/REKTORAT.jpg");
+        background-position: center;
+        background-size: cover;
+        text-align: center;
+        color: #fff;
+        position: relative;
+      }
+      
+      nav {
+        display: flex;
+        padding: 2% 6%;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      nav img {
+        width: 150px;
+      }
+      
+      .nav-links {
+        flex: 1;
+        text-align: right;
+      }
+      
+      .nav-links ul li {
+        list-style: none;
+        display: inline-block;
+        padding: 8px 12px;
+        position: relative;
+      }
+      
+      .nav-links ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 13px;
+      }
+      
+      .nav-links ul li::after {
+        content: "";
+        width: 0%;
+        height: 2px;
+        background: #f44336;
+        display: block;
+        margin: auto;
+        transition: 0.5s;
+      }
+      
+      .nav-links ul li:hover::after {
+        width: 100%;
+      }
+      
+      .sub-header h1 {
+        margin-top: 100px;
+        font-size: 36px;
+      }
+      
+      .container {
+        width: 80%;
+        margin: auto;
+        padding: 60px 0;
+      }
+      
+      .certificate-header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+      
+      .certificate-header h2 {
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 15px;
+      }
+      
+      .certificate-header p {
+        color: #666;
+        line-height: 1.6;
+        width: 80%;
+        margin: auto;
+      }
+      
+      .certificate-types {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 50px;
+      }
+      
+      .certificate-card {
+        width: 30%;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+        transition: 0.3s;
+      }
+      
+      .certificate-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      .certificate-img {
+        width: 100%;
+        height: 200px;
+        background-color: #f1f1f1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      
+      .certificate-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      .certificate-content {
+        padding: 20px;
+      }
+      
+      .certificate-content h3 {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 10px;
+      }
+      
+      .certificate-content p {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        font-size: 14px;
+      }
+      
+      .certificate-meta {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        font-size: 14px;
+      }
+      
+      .duration, .level {
+        display: flex;
+        align-items: center;
+      }
+      
+      .duration i, .level i {
+        margin-right: 5px;
+        color: #f44336;
+      }
+      
+      .certificate-btn {
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        border: 1px solid #f44336;
+        padding: 10px 20px;
+        font-size: 13px;
+        background: #f44336;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: 0.3s;
+      }
+      
+      .certificate-btn:hover {
+        background: #ff5c4c;
+      }
+      
+      .verify-section {
+        background: #fff;
+        padding: 50px 0;
+        text-align: center;
+        margin-bottom: 50px;
+      }
+      
+      .verify-container {
+        width: 60%;
+        margin: auto;
+      }
+      
+      .verify-container h2 {
+        font-size: 30px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+      
+      .verify-container p {
+        color: #666;
+        margin-bottom: 30px;
+        line-height: 1.6;
+      }
+      
+      .verify-form {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      
+      .verify-form input {
+        width: 70%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px 0 0 5px;
+        font-size: 14px;
+      }
+      
+      .verify-form button {
+        padding: 12px 20px;
+        background: #f44336;
+        color: #fff;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      
+      .verify-form button:hover {
+        background: #ff5c4c;
+      }
+      
+      .faq-section {
+        margin-bottom: 50px;
+      }
+      
+      .faq-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      
+      .faq-header h2 {
+        font-size: 30px;
+        color: #333;
+        margin-bottom: 15px;
+      }
+      
+      .faq-container {
+        width: 80%;
+        margin: auto;
+      }
+      
+      .faq-item {
+        margin-bottom: 15px;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      
+      .faq-question {
+        background: #f1f1f1;
+        padding: 15px 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: 0.3s;
+      }
+      
+      .faq-question:hover {
+        background: #e1e1e1;
+      }
+      
+      .faq-question h3 {
+        font-size: 16px;
+        color: #333;
+      }
+      
+      .faq-answer {
+        padding: 0 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        background: #fff;
+      }
+      
+      .faq-answer p {
+        padding: 20px 0;
+        color: #666;
+        line-height: 1.6;
+      }
+      
+      .active .faq-answer {
+        max-height: 200px;
+      }
+      
+      .active .faq-question {
+        background: #f44336;
+        color: #fff;
+      }
+      
+      .active .faq-question h3 {
+        color: #fff;
+      }
+      
+      .request-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("Images/REKTORAT.jpg");
+        background-size: cover;
+        background-position: center;
+        padding: 80px 0;
+        text-align: center;
+        color: #fff;
+        margin-bottom: 50px;
+      }
+      
+      .request-container {
+        width: 60%;
+        margin: auto;
+      }
+      
+      .request-container h2 {
+        font-size: 30px;
+        margin-bottom: 20px;
+      }
+      
+      .request-container p {
+        margin-bottom: 30px;
+        line-height: 1.6;
+      }
+      
+      .request-form {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        margin: auto;
+      }
+      
+      .request-form input,
+      .request-form select,
+      .request-form textarea {
+        margin-bottom: 15px;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+      
+      .request-form textarea {
+        height: 100px;
+        resize: vertical;
+      }
+      
+      .submit-btn {
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        border: 1px solid #f44336;
+        padding: 12px 34px;
+        font-size: 13px;
+        background: #f44336;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: 0.3s;
+        border: none;
+      }
+      
+      .submit-btn:hover {
+        background: #ff5c4c;
+      }
+      
+      .footer {
+        width: 100%;
+        text-align: center;
+        padding: 30px 0;
+        background: #333;
+        color: #fff;
+      }
+      
+      .footer h1 {
+        margin-bottom: 25px;
+        margin-top: 20px;
+        font-weight: 600;
+      }
+      
+      .footer-intro {
+        width: 80%;
+        margin: auto;
+        margin-bottom: 25px;
+      }
+      
+      .icons .fa {
+        color: #f44336;
+        margin: 0 13px;
+        cursor: pointer;
+        padding: 18px 0;
+        text-decoration: none;
+      }
+      
+      .fa-heart-o {
+        color: #f44336;
+      }
+      
+      @media (max-width: 768px) {
+        .certificate-card {
+          width: 100%;
+        }
+        
+        .verify-container,
+        .request-container,
+        .request-form {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="sub-header">
+      <nav>
+        <a href="home.html"><img src="Images/Logo_Polnes.png" alt="Logo Polnes" /></a>
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-times" onclick="hideMenu()"></i>
+          <ul>
+            <li><a href="index.html">BERANDA</a></li>
+            <li><a href="about.html">TENTANG</a></li>
+            <li><a href="courses.html">JADWAL</a></li>
+            <li><a href="blog.html">FORUM</a></li>
+            <li><a href="contact.html">SERTIFIKAT</a></li>
+          </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+      <h1>Sertifikat Pelatihan</h1>
+    </section>
+
+    <div class="container">
+      <div class="certificate-header">
+        <h2>Program Sertifikasi Politeknik Negeri Samarinda</h2>
+        <p>Tingkatkan kompetensi dan daya saing Anda dengan program sertifikasi profesional yang diakui industri. Program sertifikasi kami dirancang untuk memenuhi kebutuhan pasar kerja dan meningkatkan keahlian teknis serta soft skill mahasiswa.</p>
+      </div>
+
+      <div class="certificate-types">
+        <div class="certificate-card">
+          <div class="certificate-img">
+            <img src="/api/placeholder/400/200" alt="Sertifikat Teknologi Informasi" />
+          </div>
+          <div class="certificate-content">
+            <h3>Sertifikasi Teknologi Informasi</h3>
+            <div class="certificate-meta">
+              <div class="duration">
+                <i class="fa fa-clock-o"></i>
+                <span>3 bulan</span>
+              </div>
+              <div class="level">
+                <i class="fa fa-signal"></i>
+                <span>Dasar-Lanjutan</span>
+              </div>
+            </div>
+            <p>Program sertifikasi di bidang TI mencakup pengembangan web, administrasi jaringan, keamanan siber, cloud computing, dan lainnya. Diakui oleh perusahaan teknologi terkemuka.</p>
+            <a href="#" class="certificate-btn">Lihat Detail</a>
+          </div>
+        </div>
+
+        <div class="certificate-card">
+          <div class="certificate-img">
+            <img src="/api/placeholder/400/200" alt="Sertifikat Bisnis & Manajemen" />
+          </div>
+          <div class="certificate-content">
+            <h3>Sertifikasi Bisnis & Manajemen</h3>
+            <div class="certificate-meta">
+              <div class="duration">
+                <i class="fa fa-clock-o"></i>
+                <span>2 bulan</span>
+              </div>
+              <div class="level">
+                <i class="fa fa-signal"></i>
+                <span>Menengah</span>
+              </div>
+            </div>
+            <p>Program sertifikasi di bidang bisnis mencakup manajemen proyek, analisis data bisnis, pemasaran digital, manajemen sumber daya manusia, dan kewirausahaan.</p>
+            <a href="#" class="certificate-btn">Lihat Detail</a>
+          </div>
+        </div>
+
+        <div class="certificate-card">
+          <div class="certificate-img">
+            <img src="/api/placeholder/400/200" alt="Sertifikat Teknik & Rekayasa" />
+          </div>
+          <div class="certificate-content">
+            <h3>Sertifikasi Teknik & Rekayasa</h3>
+            <div class="certificate-meta">
+              <div class="duration">
+                <i class="fa fa-clock-o"></i>
+                <span>4 bulan</span>
+              </div>
+              <div class="level">
+                <i class="fa fa-signal"></i>
+                <span>Lanjutan</span>
+              </div>
+            </div>
+            <p>Program sertifikasi di bidang teknik mencakup otomasi industri, desain teknik, pengujian material, manufaktur, dan manajemen konstruksi sesuai standar industri.</p>
+            <a href="#" class="certificate-btn">Lihat Detail</a>
+          </div>
+        </div>
+
+        <div class="certificate-card">
+          <div class="certificate-img">
+            <img src="/api/placeholder/400/200" alt="Sertifikat Bahasa & Komunikasi" />
+          </div>
+          <div class="certificate-content">
+            <h3>Sertifikasi Bahasa & Komunikasi</h3>
+            <div class="certificate-meta">
+              <div class="duration">
+                <i class="fa fa-clock-o"></i>
+                <span>2 bulan</span>
+              </div>
+              <div class="level">
+                <i class="fa fa-signal"></i>
+                <span>Semua Level</span>
+              </div>
+            </div>
+            <p>Program sertifikasi untuk meningkatkan kemampuan berbahasa Inggris (TOEFL/IELTS), public speaking, penulisan teknis, dan komunikasi profesional di tempat kerja.</p>
+            <a href="#" class="certificate-btn">Lihat Detail</a>
+          </div>
+        </div>
+
+        <div class="certificate-card">
+          <div class="certificate-img">
+            <img src="/api/placeholder/400/200" alt="Sertifikat Desain & Multimedia" />
+          </div>
+          <div class="certificate-content">
+            <h3>Sertifikasi Desain & Multimedia</h3>
+            <div class="certificate-meta">
+              <div class="duration">
+                <i class="fa fa-clock-o"></i>
+                <span>3 bulan</span>
+              </div>
+              <div class="level">
+                <i class="fa fa-signal"></i>
+                <span>Dasar-Menengah</span>
+              </div>
+            </div>
+            <p>Program sertifikasi di bidang desain yang mencakup desain grafis, UI/UX, produksi video, animasi, dan pengembangan game yang diakui industri kreatif.</p>
+            <a href="#" class="certificate-btn">Lihat Detail</a>
+          </div>
+        </div>
+
+        <div class="certificate-card">
+          <div class="certificate-img">
+            <img src="/api/placeholder/400/200" alt="Sertifikat Industri & Manufaktur" />
+          </div>
+          <div class="certificate-content">
+            <h3>Sertifikasi Industri & Manufaktur</h3>
+            <div class="certificate-meta">
+              <div class="duration">
+                <i class="fa fa-clock-o"></i>
+                <span>4 bulan</span>
+              </div>
+              <div class="level">
+                <i class="fa fa-signal"></i>
+                <span>Lanjutan</span>
+              </div>
+            </div>
+            <p>Program sertifikasi untuk bidang perminyakan, pertambangan, manufaktur, dan industri berat lainnya yang didukung oleh mitra industri terkemuka di Kalimantan Timur.</p>
+            <a href="#" class="certificate-btn">Lihat Detail</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bagian Verifikasi Sertifikat -->
+    <section class="verify-section">
+      <div class="verify-container">
+        <h2>Verifikasi Sertifikat</h2>
+        <p>Pastikan sertifikat yang Anda miliki asli dan dikeluarkan oleh Politeknik Negeri Samarinda. Masukkan nomor sertifikat Anda di bawah ini untuk memverifikasi keasliannya.</p>
+        <div class="verify-form">
+          <input type="text" placeholder="Masukkan Nomor Sertifikat" />
+          <button>Verifikasi</button>
+        </div>
+        <p>Semua sertifikat yang dikeluarkan oleh Politeknik Negeri Samarinda memiliki QR Code yang dapat dipindai untuk verifikasi cepat.</p>
+      </div>
+    </section>
+
+    <!-- Bagian FAQ -->
+    <section class="faq-section">
+      <div class="faq-header">
+        <h2>Pertanyaan Umum</h2>
+      </div>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Bagaimana cara mendaftar program sertifikasi?</h3>
+            <i class="fa fa-plus"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Untuk mendaftar program sertifikasi, Anda perlu mengisi formulir pendaftaran online melalui website resmi Politeknik Negeri Samarinda atau datang langsung ke Kantor Pusat Pelatihan dan Sertifikasi di kampus. Pastikan untuk menyiapkan dokumen yang diperlukan seperti kartu identitas, bukti pendidikan, dan persyaratan khusus lainnya sesuai program yang Anda pilih.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Berapa biaya program sertifikasi?</h3>
+            <i class="fa fa-plus"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Biaya program sertifikasi bervariasi tergantung jenis dan tingkatannya. Untuk mahasiswa aktif Politeknik Negeri Samarinda, tersedia subsidi hingga 50% dari biaya normal. Beberapa program sertifikasi juga menawarkan beasiswa penuh untuk mahasiswa berprestasi. Silakan hubungi Kantor Pusat Pelatihan dan Sertifikasi untuk informasi biaya terbaru.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Apakah sertifikat diakui secara nasional dan internasional?</h3>
+            <i class="fa fa-plus"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Ya, sebagian besar program sertifikasi kami telah terakreditasi oleh Badan Nasional Sertifikasi Profesi (BNSP) sehingga diakui secara nasional. Beberapa program juga memiliki akreditasi internasional melalui kerjasama dengan lembaga sertifikasi global seperti Microsoft, Oracle, CompTIA, dan AWS untuk bidang IT, serta ASME dan ISO untuk bidang teknik.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Berapa lama masa berlaku sertifikat?</h3>
+            <i class="fa fa-plus"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Masa berlaku sertifikat bervariasi tergantung jenis program. Beberapa sertifikat memiliki masa berlaku 2-3 tahun dan memerlukan pembaruan, sementara yang lain berlaku seumur hidup. Informasi masa berlaku tertera pada sertifikat Anda. Kami juga menyediakan program penyegaran untuk memperpanjang masa berlaku sertifikat yang akan kedaluwarsa.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Bagaimana jika saya kehilangan sertifikat?</h3>
+            <i class="fa fa-plus"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Jika Anda kehilangan sertifikat, Anda dapat mengajukan penerbitan salinan sertifikat dengan mengisi formulir permohonan di Kantor Pusat Pelatihan dan Sertifikasi. Diperlukan biaya administrasi untuk penerbitan salinan sertifikat, dan proses ini membutuhkan waktu sekitar 7-14 hari kerja. Sertifikat pengganti akan ditandai sebagai "SALINAN" untuk membedakannya dari asli.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bagian Permintaan Sertifikat -->
+    <section class="request-section">
+      <div class="request-container">
+        <h2>Permintaan Sertifikat</h2>
+        <p>Butuh sertifikat untuk pelatihan yang telah Anda ikuti? Silakan isi formulir di bawah ini untuk mengajukan permintaan sertifikat atau salinan sertifikat yang hilang.</p>
+        <form class="request-form" id="requestForm">
+          <input type="text" placeholder="Nama Lengkap" required />
+          <input type="text" placeholder="NIM" required />
+          <input type="email" placeholder="Email" required />
+          <select required>
+            <option value="">Pilih Jenis Permintaan</option>
+            <option value="new">Sertifikat Baru</option>
+            <option value="copy">Salinan Sertifikat</option>
+            <option value="verification">Verifikasi Sertifikat</option>
+          </select>
+          <select required>
+            <option value="">Pilih Program Pelatihan</option>
+            <option value="it">Teknologi Informasi</option>
+            <option value="business">Bisnis & Manajemen</option>
+            <option value="engineering">Teknik & Rekayasa</option>
+            <option value="language">Bahasa & Komunikasi</option>
+            <option value="design">Desain & Multimedia</option>
+            <option value="industry">Industri & Manufaktur</option>
+          </select>
+          <textarea placeholder="Pesan atau Detail Tambahan"></textarea>
+          <button type="submit" class="submit-btn">Kirim Permintaan</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="footer">
+      <h1>Tentang Kami</h1>
+      <div class="footer-intro">
+        <p>
+          "Kami berkomitmen untuk memberikan pengalaman belajar terbaik dan menyediakan program sertifikasi berkualitas untuk meningkatkan daya saing mahasiswa di dunia kerja."
+        </p>
+      </div>
+      <div class="icons">
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-twitter"></a>
+        <a href="#" class="fa fa-instagram"></a>
+        <a href="#" class="fa fa-linkedin"></a>
+      </div>
+      <p>© 2025 Politeknik Negeri Samarinda</p>
+    </section>
+
+    <script>
+      // Toggle Menu untuk tampilan mobile
+      var navLinks = document.getElementById("navLinks");
+
+      function showMenu() {
+        navLinks.style.right = "0";
+      }
+
+      function hideMenu() {
+        navLinks.style.right = "-200px";
+      }
+
+      // Toggle FAQ
+      document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+          const item = question.parentNode;
+          item.classList.toggle('active');
+        });
+      });
+
+      // Form Submission
+      document.getElementById("requestForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        alert("Permintaan Anda telah dikirim. Tim kami akan memproses permintaan Anda dalam 3-5 hari kerja. Terima kasih!");
+        this.reset();
+      });
+    </script>
+  </body>
+</html>

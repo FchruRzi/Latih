@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forum Tanya Jawab Pelatihan - Polnes</title>
+    <link rel="icon" href="Images/Logo_Polnes.png" type="image/x-icon" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+      }
+      
+      body {
+        background-color: #f8f8f8;
+      }
+      
+      .sub-header {
+        height: 50vh;
+        width: 100%;
+        background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),
+          url("Images/REKTORAT.jpg");
+        background-position: center;
+        background-size: cover;
+        text-align: center;
+        color: #fff;
+        position: relative;
+      }
+      
+      nav {
+        display: flex;
+        padding: 2% 6%;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      nav img {
+        width: 150px;
+      }
+      
+      .nav-links {
+        flex: 1;
+        text-align: right;
+      }
+      
+      .nav-links ul li {
+        list-style: none;
+        display: inline-block;
+        padding: 8px 12px;
+        position: relative;
+      }
+      
+      .nav-links ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 13px;
+      }
+      
+      .nav-links ul li::after {
+        content: "";
+        width: 0%;
+        height: 2px;
+        background: #f44336;
+        display: block;
+        margin: auto;
+        transition: 0.5s;
+      }
+      
+      .nav-links ul li:hover::after {
+        width: 100%;
+      }
+      
+      .sub-header h1 {
+        margin-top: 100px;
+        font-size: 36px;
+      }
+      
+      .container {
+        width: 80%;
+        margin: auto;
+        padding: 60px 0;
+      }
+      
+      .forum-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      
+      .forum-header h2 {
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 15px;
+      }
+      
+      .forum-header p {
+        color: #666;
+        line-height: 1.6;
+      }
+      
+      .forum-categories {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 50px;
+      }
+      
+      .category {
+        width: 23%;
+        background: #fff;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+      }
+      
+      .category:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      .category h3 {
+        color: #f44336;
+        margin-bottom: 10px;
+      }
+      
+      .category p {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 15px;
+      }
+      
+      .category a {
+        display: inline-block;
+        text-decoration: none;
+        color: #f44336;
+        font-weight: bold;
+      }
+      
+      .qa-section {
+        margin-top: 50px;
+      }
+      
+      .qa-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+      
+      .qa-header h2 {
+        color: #333;
+      }
+      
+      .ask-btn {
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        border: 1px solid #f44336;
+        padding: 12px 34px;
+        font-size: 13px;
+        background: #f44336;
+        position: relative;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      
+      .ask-btn:hover {
+        background: #ff5c4c;
+      }
+      
+      .question {
+        background: #fff;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+      
+      .question-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+      
+      .user-info {
+        display: flex;
+        align-items: center;
+      }
+      
+      .user-info img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+      
+      .user-name {
+        font-weight: bold;
+        color: #333;
+      }
+      
+      .post-date {
+        color: #999;
+        font-size: 12px;
+      }
+      
+      .tag {
+        display: inline-block;
+        padding: 5px 10px;
+        background: #e1f5fe;
+        color: #0288d1;
+        border-radius: 15px;
+        font-size: 12px;
+        margin-left: 10px;
+      }
+      
+      .question-title {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 10px;
+      }
+      
+      .question-body {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+      
+      .question-footer {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+      }
+      
+      .interactions span {
+        margin-right: 20px;
+        color: #666;
+        font-size: 14px;
+      }
+      
+      .interactions i {
+        margin-right: 5px;
+      }
+      
+      .view-answers {
+        color: #f44336;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      
+      .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+      }
+      
+      .pagination a {
+        color: #333;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        border: 1px solid #ddd;
+        margin: 0 4px;
+        border-radius: 5px;
+      }
+      
+      .pagination a.active {
+        background-color: #f44336;
+        color: white;
+        border: 1px solid #f44336;
+      }
+      
+      .pagination a:hover:not(.active) {
+        background-color: #ddd;
+      }
+      
+      #askQuestionModal {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+      
+      .modal-content {
+        background-color: #fff;
+        margin: 10% auto;
+        padding: 30px;
+        border-radius: 10px;
+        width: 60%;
+        max-width: 700px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+      
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      
+      .close:hover {
+        color: #333;
+      }
+      
+      .question-form h3 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+      
+      .form-group {
+        margin-bottom: 20px;
+      }
+      
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #555;
+        font-weight: bold;
+      }
+      
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+      
+      .form-group textarea {
+        height: 150px;
+        resize: vertical;
+      }
+      
+      .submit-btn {
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        border: 1px solid #f44336;
+        padding: 12px 34px;
+        font-size: 13px;
+        background: #f44336;
+        position: relative;
+        cursor: pointer;
+        border-radius: 5px;
+        border: none;
+      }
+      
+      .submit-btn:hover {
+        background: #ff5c4c;
+      }
+      
+      .footer {
+        width: 100%;
+        text-align: center;
+        padding: 30px 0;
+        background: #333;
+        color: #fff;
+      }
+      
+      .footer h1 {
+        margin-bottom: 25px;
+        margin-top: 20px;
+        font-weight: 600;
+      }
+      
+      .footer-intro {
+        width: 80%;
+        margin: auto;
+        margin-bottom: 25px;
+      }
+      
+      .icons .fa {
+        color: #f44336;
+        margin: 0 13px;
+        cursor: pointer;
+        padding: 18px 0;
+        text-decoration: none;
+      }
+      
+      .fa-heart-o {
+        color: #f44336;
+      }
+      
+      @media (max-width: 768px) {
+        .category {
+          width: 100%;
+        }
+        
+        .modal-content {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="sub-header">
+      <nav>
+        <a href="home.html"><img src="Images/Logo_Polnes.png" alt="Logo Polnes" /></a>
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-times" onclick="hideMenu()"></i>
+          <ul>
+            <li><a href="index.html">BERANDA</a></li>
+            <li><a href="about.html">TENTANG</a></li>
+            <li><a href="courses.html">JADWAL</a></li>
+            <li><a href="blog.html">FORUM</a></li>
+            <li><a href="contact.html">SERTIFIKAT</a></li>
+          </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+      <h1>Forum Tanya Jawab Pelatihan</h1>
+    </section>
+
+    <div class="container">
+      <div class="forum-header">
+        <h2>Selamat Datang di Forum Tanya Jawab Pelatihan</h2>
+        <p>Platform untuk berdiskusi dan berbagi informasi tentang program pelatihan yang tersedia di kampus. Ajukan pertanyaan, bagikan pengalaman, dan dapatkan informasi terkini tentang pelatihan.</p>
+      </div>
+
+      <div class="forum-categories">
+        <div class="category">
+          <h3>Pelatihan Teknis</h3>
+          <p>Diskusi tentang program pelatihan teknis seperti pengembangan software, networking, dan keahlian teknis lainnya.</p>
+          <a href="#">Lihat Diskusi</a>
+        </div>
+        <div class="category">
+          <h3>Pelatihan Soft Skill</h3>
+          <p>Tanya jawab tentang program pengembangan soft skill seperti kepemimpinan, komunikasi, dan manajemen waktu.</p>
+          <a href="#">Lihat Diskusi</a>
+        </div>
+        <div class="category">
+          <h3>Sertifikasi Profesional</h3>
+          <p>Informasi dan diskusi tentang program sertifikasi profesional yang tersedia untuk mahasiswa.</p>
+          <a href="#">Lihat Diskusi</a>
+        </div>
+        <div class="category">
+          <h3>Program Magang</h3>
+          <p>Berbagi pengalaman dan informasi tentang program magang dan kerja praktek yang tersedia.</p>
+          <a href="#">Lihat Diskusi</a>
+        </div>
+      </div>
+
+      <div class="qa-section">
+        <div class="qa-header">
+          <h2>Pertanyaan Terbaru</h2>
+          <button class="ask-btn" id="openModalBtn">Ajukan Pertanyaan</button>
+        </div>
+
+        <div class="question">
+          <div class="question-header">
+            <div class="user-info">
+              <img src="/api/placeholder/40/40" alt="User Avatar" />
+              <div>
+                <div class="user-name">Ahmad Rizki</div>
+                <div class="post-date">15 Mei 2025</div>
+              </div>
+            </div>
+            <span class="tag">Pelatihan Teknis</span>
+          </div>
+          <h3 class="question-title">Bagaimana cara mendaftar pelatihan Microsoft Azure di kampus?</h3>
+          <p class="question-body">Saya tertarik dengan pelatihan Microsoft Azure yang diumumkan minggu lalu. Bagaimana prosedur pendaftarannya dan apa saja persyaratannya? Apakah ada batasan jumlah peserta?</p>
+          <div class="question-footer">
+            <div class="interactions">
+              <span><i class="fa fa-thumbs-up"></i> 15</span>
+              <span><i class="fa fa-comment"></i> 8</span>
+              <span><i class="fa fa-eye"></i> 124</span>
+            </div>
+            <a href="#" class="view-answers">Lihat Jawaban</a>
+          </div>
+        </div>
+
+        <div class="question">
+          <div class="question-header">
+            <div class="user-info">
+              <img src="/api/placeholder/40/40" alt="User Avatar" />
+              <div>
+                <div class="user-name">Dina Putri</div>
+                <div class="post-date">13 Mei 2025</div>
+              </div>
+            </div>
+            <span class="tag">Soft Skill</span>
+          </div>
+          <h3 class="question-title">Pelatihan Public Speaking kapan diadakan lagi?</h3>
+          <p class="question-body">Saya tidak sempat ikut pelatihan public speaking bulan lalu karena bentrok dengan jadwal UTS. Apakah akan ada pelatihan serupa dalam waktu dekat? Saya sangat membutuhkan pelatihan ini untuk persiapan presentasi tugas akhir.</p>
+          <div class="question-footer">
+            <div class="interactions">
+              <span><i class="fa fa-thumbs-up"></i> 23</span>
+              <span><i class="fa fa-comment"></i> 12</span>
+              <span><i class="fa fa-eye"></i> 189</span>
+            </div>
+            <a href="#" class="view-answers">Lihat Jawaban</a>
+          </div>
+        </div>
+
+        <div class="question">
+          <div class="question-header">
+            <div class="user-info">
+              <img src="/api/placeholder/40/40" alt="User Avatar" />
+              <div>
+                <div class="user-name">Budi Santoso</div>
+                <div class="post-date">10 Mei 2025</div>
+              </div>
+            </div>
+            <span class="tag">Sertifikasi</span>
+          </div>
+          <h3 class="question-title">Apakah kampus menyediakan subsidi untuk biaya sertifikasi CCNA?</h3>
+          <p class="question-body">Saya berencana mengambil sertifikasi CCNA tahun ini, tetapi biayanya cukup mahal. Apakah kampus memiliki program subsidi atau beasiswa untuk sertifikasi profesional? Jika ada, bagaimana cara mendaftarnya?</p>
+          <div class="question-footer">
+            <div class="interactions">
+              <span><i class="fa fa-thumbs-up"></i> 18</span>
+              <span><i class="fa fa-comment"></i> 7</span>
+              <span><i class="fa fa-eye"></i> 156</span>
+            </div>
+            <a href="#" class="view-answers">Lihat Jawaban</a>
+          </div>
+        </div>
+
+        <div class="question">
+          <div class="question-header">
+            <div class="user-info">
+              <img src="/api/placeholder/40/40" alt="User Avatar" />
+              <div>
+                <div class="user-name">Siti Aminah</div>
+                <div class="post-date">8 Mei 2025</div>
+              </div>
+            </div>
+            <span class="tag">Magang</span>
+          </div>
+          <h3 class="question-title">Pengalaman magang di PT Telkom Indonesia</h3>
+          <p class="question-body">Ada yang pernah magang di PT Telkom Indonesia? Saya ingin tahu bagaimana prosesnya, persyaratan apa saja yang diperlukan, dan apakah ada kesempatan untuk direkrut setelah program magang selesai. Mohon berbagi pengalaman.</p>
+          <div class="question-footer">
+            <div class="interactions">
+              <span><i class="fa fa-thumbs-up"></i> 27</span>
+              <span><i class="fa fa-comment"></i> 15</span>
+              <span><i class="fa fa-eye"></i> 210</span>
+            </div>
+            <a href="#" class="view-answers">Lihat Jawaban</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <a href="#">&laquo;</a>
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">&raquo;</a>
+      </div>
+    </div>
+
+    <!-- Modal untuk Ajukan Pertanyaan -->
+    <div id="askQuestionModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="question-form">
+          <h3>Ajukan Pertanyaan</h3>
+          <form id="questionForm">
+            <div class="form-group">
+              <label for="title">Judul Pertanyaan</label>
+              <input type="text" id="title" name="title" required placeholder="Masukkan judul pertanyaan Anda">
+            </div>
+            <div class="form-group">
+              <label for="category">Kategori</label>
+              <select id="category" name="category" required>
+                <option value="">Pilih Kategori</option>
+                <option value="teknis">Pelatihan Teknis</option>
+                <option value="soft-skill">Pelatihan Soft Skill</option>
+                <option value="sertifikasi">Sertifikasi Profesional</option>
+                <option value="magang">Program Magang</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="question">Detail Pertanyaan</label>
+              <textarea id="question" name="question" required placeholder="Jelaskan pertanyaan Anda secara detail"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Kirim Pertanyaan</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <section class="footer">
+      <h1>About Us</h1>
+      <div class="footer-intro">
+        <p>
+          "Kami berkomitmen untuk memberikan pengalaman belajar terbaik dan menyediakan informasi terkini tentang program pelatihan untuk mahasiswa kami."
+        </p>
+      </div>
+      <div class="icons">
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-twitter"></a>
+        <a href="#" class="fa fa-instagram"></a>
+        <a href="#" class="fa fa-linkedin"></a>
+      </div>
+      <p>© 2025 Politeknik Negeri Samarinda</p>
+    </section>
+
+    <script>
+      // Toggle Menu untuk tampilan mobile
+      var navLinks = document.getElementById("navLinks");
+
+      function showMenu() {
+        navLinks.style.right = "0";
+      }
+
+      function hideMenu() {
+        navLinks.style.right = "-200px";
+      }
+
+      // Modal untuk Ajukan Pertanyaan
+      var modal = document.getElementById("askQuestionModal");
+      var btn = document.getElementById("openModalBtn");
+      var span = document.getElementsByClassName("close")[0];
+
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+
+      // Form Submission
+      document.getElementById("questionForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        alert("Pertanyaan Anda telah dikirim dan sedang menunggu moderasi. Terima kasih atas partisipasi Anda!");
+        modal.style.display = "none";
+        // Di sini Anda dapat menambahkan kode untuk mengirim data ke server
+      });
+    </script>
+  </body>
+</html>
