@@ -1,99 +1,639 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>POLNES PELATIHAN</title>
-    <link rel="icon" href="Images/Logo_Polnes.png" type="image/x-icon" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Poppins:wght@100;200&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200&display=swap" rel="stylesheet" />
-  </head>
-  <body>
-    <section class="header">
-      <nav>
-        <a href="home.html"><img src="Images/Logo_Polnes.png" alt="" /></a>
-        <div class="nav-links" id="navLinks">
-          <i class="fa fa-times" onclick="hideMenu()"></i>
-          <ul>
-            <li><a href="index.html">BERANDA</a></li>
-            <li><a href="about.html">TENTANG</a></li>
-            <li><a href="courses.html">JADWAL</a></li>
-            <li><a href="blog.html">FORUM</a></li>
-            <li><a href="contact.html">SERTIFIKAT</a></li>
-          </ul>
-        </div>
-        <i class="fa fa-bars" onclick="showMenu()"></i>
-      </nav>
-      <div class="text-box">
-        <h1>POLNES</h1>
-        <p>
-          Di Polnes, kami percaya dalam memberdayakan calon insinyur untuk
-          mewujudkan potensi penuh mereka dan membentuk masa depan dengan ide-ide inovatif.
-        </p>
-        <a href="" class="hero-btn">Kunjungi Kami Untuk Info Lebih Lanjut</a>
-      </div>
-    </section>
 
-    <!-- -------course--------- -->
-    <section class="course">
-      <h1>Program yang Kami Tawarkan</h1>
-      <div class="course-intro">
-        <p>
-          Jelajahi program kami yang dirancang untuk memupuk
-          minat Anda pada teknologi dan membekali Anda dengan keterampilan untuk membentuk masa depan.
-        </p>
-      </div>
-      <div class="row">
-        <div class="course-col">
-          <h3>B.TECH</h3>
-          <p>
-            Program B.Tech dirancang untuk memberikan siswa dasar yang kuat dalam prinsip rekayasa dan keterampilan praktis.
-            Program ini menawarkan pemahaman komprehensif tentang berbagai disiplin teknik.
-          </p>
-        </div>
-        <div class="course-col">
-          <h3>M.TECH</h3>
-          <p>
-            Program M.Tech adalah gelar pascasarjana yang fokus pada konsep teknik lanjutan dan pengetahuan khusus.
-            Program ini memungkinkan siswa untuk mendalami bidang teknik pilihan mereka dan mengerjakan proyek penelitian.
-          </p>
-        </div>
-        <div class="course-col">
-          <h3>PENELITIAN</h3>
-          <p>
-            Kampus kami juga menawarkan kesempatan penelitian bagi mereka yang ingin mendorong batas pengetahuan teknik.
-            Program ini memberikan wadah bagi mahasiswa untuk berkolaborasi dalam proyek riset berdampak tinggi bersama dosen ahli.
-          </p>
-        </div>
-      </div>
-    </section>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POLNES - Sistem Informasi Pelatihan</title>
+  <link rel="icon" href="Images/Logo_Polnes.png" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <!-- --------call to action----------- -->
-    <section class="cta">
-      <h1>
-        Daftar Untuk Kursus Online Kami <br />
-        dari mana saja di dunia!
-      </h1>
-      <a href="" class="hero-btn">HUBUNGI KAMI</a>
-    </section>
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
 
+    /* Header Styles */
+    .header {
+      min-height: 100vh;
+      width: 100%;
+      background: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),
+        url("Images/REKTORAT.jpg");
+      background-position: center;
+      background-size: cover;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
 
-    <!--Javascript untuk Toggle Menu-->
-    <script>
-      var navLinks = document.getElementById("navLinks");
+    nav {
+      display: flex;
+      padding: 2% 6%;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
 
-      function showMenu() {
-        navLinks.style.right = "0";
+    nav img {
+      width: 60px;
+      height: 60px;
+    }
+
+    .nav-links {
+      flex: 1;
+      text-align: right;
+    }
+
+    .nav-links ul li {
+      list-style: none;
+      display: inline-block;
+      padding: 8px 12px;
+      position: relative;
+    }
+
+    .nav-links ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-links ul li::after {
+      content: '';
+      width: 0%;
+      height: 2px;
+      background: #0d960d;
+      display: block;
+      margin: auto;
+      transition: 0.5s;
+    }
+
+    .nav-links ul li:hover::after {
+      width: 100%;
+    }
+
+    .nav-links ul li a:hover {
+      color: #19eb23;
+    }
+
+    .fa-bars,
+    .fa-times {
+      display: none;
+    }
+
+    .text-box {
+      width: 90%;
+      color: #fff;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .text-box h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .text-box p {
+      margin: 10px 0 40px;
+      font-size: 1.2rem;
+      color: #fff;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      text-decoration: none;
+      color: #fff;
+      border: 1px solid #fff;
+      padding: 12px 34px;
+      font-size: 14px;
+      background: transparent;
+      position: relative;
+      cursor: pointer;
+      transition: 1s;
+      border-radius: 25px;
+    }
+
+    .hero-btn:hover {
+      border: 1px solid #36f436;
+      background: #36f45670;
+      transition: 1s;
+    }
+
+    /* Quick Stats Section */
+    .quick-stats {
+      padding: 50px 0;
+      background: #f8f9fa;
+    }
+
+    .stats-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+    .stat-card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-card i {
+      font-size: 3rem;
+      color: #169716;
+      margin-bottom: 15px;
+    }
+
+    .stat-card h3 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .stat-card p {
+      color: #666;
+      font-size: 1rem;
+    }
+
+    /* Training Features Section */
+    .training-features {
+      padding: 80px 0;
+      background: #fff;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .section-title p {
+      font-size: 1.1rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+    }
+
+    .feature-card {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid #eee;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-card i {
+      font-size: 3.5rem;
+      color: #2ea81e;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .feature-card p {
+      color: #666;
+      line-height: 1.7;
+    }
+
+    /* Popular Trainings Section */
+    .popular-trainings {
+      padding: 80px 0;
+      background: #f8f9fa;
+    }
+
+    .training-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .training-card {
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .training-card:hover {
+      transform: scale(1.02);
+    }
+
+    .training-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .training-content {
+      padding: 25px;
+    }
+
+    .training-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .training-meta {
+      display: flex;
+      justify-content: space-between;
+      margin: 15px 0;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .training-meta span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .training-btn {
+      display: inline-block;
+      background: #21a71c;
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .training-btn:hover {
+      background: #4ad32f;
+    }
+
+    /* CTA Section */
+    .cta {
+      width: 100%;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+      background-position: center;
+      background-size: cover;
+      border-radius: 10px;
+      text-align: center;
+      padding: 100px 20px;
+      color: #fff;
+      margin: 80px 20px;
+    }
+
+    .cta h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      line-height: 1.3;
+    }
+
+    /* Responsive Design */
+    @media(max-width: 768px) {
+      .nav-links ul li {
+        display: block;
       }
 
-      function hideMenu() {
-        navLinks.style.right = "-200px";
+      .nav-links {
+        position: fixed;
+        background: #4cf436;
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200px;
+        text-align: left;
+        z-index: 2;
+        transition: 1s;
       }
-    </script>
-  </body>
+
+      .nav-links ul {
+        padding: 30px;
+      }
+
+      .fa-bars,
+      .fa-times {
+        display: block;
+        color: #fff;
+        margin: 10px;
+        font-size: 22px;
+        cursor: pointer;
+      }
+
+      .text-box h1 {
+        font-size: 2.5rem;
+      }
+
+      .text-box p {
+        font-size: 1rem;
+      }
+
+      .stats-container {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .training-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header Section -->
+  <section class="header">
+    <nav>
+      <a href="index.html"><img src="Images/Logo_Polnes.png" alt="Logo Polnes" /></a>
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" onclick="hideMenu()"></i>
+        <ul>
+          <li><a href="index.html">BERANDA</a></li>
+          <li><a href="about.html">TENTANG</a></li>
+          <li><a href="courses.html">PELATIHAN</a></li>
+          <li><a href="blog.html">FORUM</a></li>
+          <li><a href="contact.html">SERTIFIKAT</a></li>
+          <li><a href="login.html" class="hero-btn" style="padding: 8px 16px; margin-left: 10px;">LOGIN</a></li>
+        </ul>
+      </div>
+      <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+    <div class="text-box">
+      <h1>SISTEM PELATIHAN POLNES</h1>
+      <p>
+        Platform digital terpadu untuk mengelola kegiatan pelatihan di Politeknik Negeri Samarinda.
+        Tingkatkan keterampilan Anda melalui pelatihan berkualitas dengan sertifikasi digital yang terverifikasi.
+      </p>
+      <a href="courses.html" class="hero-btn">Jelajahi Pelatihan</a>
+    </div>
+  </section>
+
+  <!-- Quick Stats Section 
+    <section class="quick-stats">
+        <div class="stats-container">
+            <div class="stat-card">
+                <i class="fa fa-users"></i>
+                <h3>1000+</h3>
+                <p>Peserta Aktif</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa fa-graduation-cap"></i>
+                <h3>50+</h3>
+                <p>Program Pelatihan</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa fa-certificate"></i>
+                <h3>800+</h3>
+                <p>Sertifikat Diterbitkan</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa fa-star"></i>
+                <h3>4.8/5</h3>
+                <p>Rating Kepuasan</p>
+            </div>
+        </div>
+    </section>
+  -->
+  <!-- Training Features Section -->
+  <section class="training-features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Fitur Unggulan Sistem Pelatihan</h2>
+        <p>
+          Sistem informasi pelatihan yang lengkap dan terintegrasi untuk mendukung
+          pengembangan keterampilan mahasiswa dan civitas akademika Polnes.
+        </p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <i class="fa fa-calendar"></i>
+          <h3>Penjadwalan Fleksibel</h3>
+          <p>
+            Sistem kalender interaktif yang memungkinkan penjadwalan pelatihan yang efisien
+            dengan deteksi konflik otomatis dan pengingat jadwal.
+          </p>
+        </div>
+        <div class="feature-card">
+          <i class="fa fa-cloud-download"></i>
+          <h3>Materi Digital</h3>
+          <p>
+            Akses materi pelatihan dalam berbagai format (PDF, Video, Presentasi)
+            dengan kemampuan download untuk belajar offline.
+          </p>
+        </div>
+        <div class="feature-card">
+          <i class="fa fa-comments"></i>
+          <h3>Forum Diskusi</h3>
+          <p>
+            Platform diskusi interaktif antara peserta dan instruktur dengan
+            sistem moderasi terintegrasi untuk pembelajaran kolaboratif.
+          </p>
+        </div>
+        <div class="feature-card">
+          <i class="fa fa-certificate"></i>
+          <h3>Sertifikat Digital</h3>
+          <p>
+            Penerbitan sertifikat digital otomatis dengan sistem verifikasi keabsahan
+            dan kemampuan berbagi ke media sosial.
+          </p>
+        </div>
+      <!--
+        <div class="feature-card">
+          <i class="fa fa-star"></i>
+          <h3>Evaluasi & Rating</h3>
+          <p>
+            Sistem evaluasi komprehensif untuk menilai kualitas pelatihan
+            dan memberikan umpan balik yang konstruktif.
+          </p>
+        </div>
+      -->
+        <div class="feature-card">
+          <i class="fa fa-chart-bar"></i>
+          <h3>Analitik & Laporan</h3>
+          <p>
+            Dashboard analitik dengan laporan partisipasi, penyelesaian,
+            dan metrik kinerja pelatihan secara real-time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Trainings Section -->
+  <section class="popular-trainings">
+    <div class="container">
+      <div class="section-title">
+        <h2>Pelatihan Populer</h2>
+        <p>Jelajahi pelatihan terpopuler yang sedang trending di platform kami</p>
+      </div>
+      <div class="training-grid">
+        <div class="training-card">
+          <img
+            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+            alt="Web Development">
+          <div class="training-content">
+            <h3>Pelatihan Web Development</h3>
+            <p>Pelajari pengembangan web modern dari frontend hingga backend dengan teknologi terkini.</p>
+            <div class="training-meta">
+              <span><i class="fa fa-clock-o"></i> 40 Jam</span>
+              <span><i class="fa fa-users"></i> 25 Peserta</span>
+              <span><i class="fa fa-star"></i> 4.9</span>
+            </div>
+            <a href="#" class="training-btn">Daftar Sekarang</a>
+          </div>
+        </div>
+        <div class="training-card">
+          <img
+            src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+            alt="Data Science">
+          <div class="training-content">
+            <h3>Workshop Machine Learning</h3>
+            <p>Dasar-dasar analisis data dan machine learning untuk pemula dengan studi kasus nyata.</p>
+            <div class="training-meta">
+              <span><i class="fa fa-clock-o"></i> 32 Jam</span>
+              <span><i class="fa fa-users"></i> 30 Peserta</span>
+              <span><i class="fa fa-star"></i> 4.7</span>
+            </div>
+            <a href="#" class="training-btn">Daftar Sekarang</a>
+          </div>
+        </div>
+        <div class="training-card">
+          <img
+            src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+            alt="Mobile Development">
+          <div class="training-content">
+            <h3>Mobile App Development</h3>
+            <p>Belajar membuat aplikasi mobile native dan cross-platform untuk Android dan iOS.</p>
+            <div class="training-meta">
+              <span><i class="fa fa-clock-o"></i> 36 Jam</span>
+              <span><i class="fa fa-users"></i> 20 Peserta</span>
+              <span><i class="fa fa-star"></i> 4.8</span>
+            </div>
+            <a href="#" class="training-btn">Daftar Sekarang</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="cta">
+    <h2>
+      Bergabunglah dengan Ribuan Peserta Lainnya<br />
+      dan Tingkatkan Kemampuan Anda Hari Ini!
+    </h2>
+    <a href="contact.html" class="hero-btn">MULAI BELAJAR</a>
+  </section>
+
+  <!-- JavaScript untuk Toggle Menu -->
+  <script>
+    var navLinks = document.getElementById("navLinks");
+
+    function showMenu() {
+      navLinks.style.right = "0";
+    }
+
+    function hideMenu() {
+      navLinks.style.right = "-200px";
+    }
+
+    // Smooth scrolling untuk internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Animation pada scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observasi elemen yang ingin dianimasikan
+    document.querySelectorAll('.feature-card, .training-card, .stat-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+
 </html>
